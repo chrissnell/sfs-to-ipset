@@ -64,16 +64,16 @@ download_and_load_list () {
     IP_FAMILY=$4
     
     echo "Downloading SFS IP list..."
-    curl -OL "$LIST_URL"
+    curl -sOL "$LIST_URL"
     
     # Figure out our filename from the URL. SBS ZIP files contain a .txt file of the same name.
     ZIP_FILE=$(echo "$LIST_URL" | sed -r 's/http.*\/(.*.zip)/\1/')
     LIST_FILE=${ZIP_FILE//zip/txt}
     IPSET_FILE="${LIST_FILE}.ipset.txt"
     
-    unzip "$ZIP_FILE"
+    unzip -q "$ZIP_FILE"
     
-    LIST_SIZE=$(wc -l "$LIST_FILE")
+    LIST_SIZE=$(wc -l "$LIST_FILE" | awk '{print $1}')
     
     # cat ${IPV4_LIST_FILE} |awk '{ print "add $IPV4_IPSET_NAME " $1 }' > "$IPSET_FILE"
     awk -v ipset_name="$IPSET_NAME" '{ print "add " ipset_name " " $1 }' < "$LIST_FILE" > "$IPSET_FILE"
