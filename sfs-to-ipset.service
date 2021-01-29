@@ -1,0 +1,11 @@
+[Unit]
+Description=Downloads and loads IP blocklists from StopForumSpam
+After=network.target network-online.target
+
+[Service]
+Type=oneshot
+User=root
+ExecStart=/usr/bin/sfs-to-ipset.sh
+
+[Install]
+WantedBy=multi-user.target
