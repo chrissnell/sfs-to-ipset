@@ -39,7 +39,8 @@ IPV6_ADDRESS_URL="https://www.stopforumspam.com/downloads/listed_ip_180_ipv6.zip
 # Set to "no" if you do not want to load IPv6 addresses
 DO_IPV6="yes"
 
-# The names of your IPv4 and IPv6
+# The names of your IPv4 and IPv6 ipset(8) sets.  These names are what you will
+# reference in your IPTables rules.
 IPV4_IPSET_NAME="sfs-ipv4"
 IPV6_IPSET_NAME="sfs-ipv6"
 
