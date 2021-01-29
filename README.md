@@ -3,7 +3,6 @@ Loads IP blocklists from StopForumSpam into a Linux ipset for easy IPTables filt
 
 # Installation
 1. Open `sfs-to-ipset.sh` in your text editor and edit the configuration.  By default, this script loads the SFS blocklists from the last 180 days.  There are a number of different lists available.  See this page for more info:  https://www.stopforumspam.com/downloads
-
 Be aware that StopForumSpam rate-limits your downloading of these lists.  I recommend not adjusting the systemd timer beyond `daily` unless you are using one of the shorter-duration lists with more permissive rate limits.
 
 2. As root, install the files:
