@@ -98,3 +98,9 @@ if [ "$DO_IPV6" == "yes" ]; then
     echo "Processing SFS IPv6 list..."
     download_and_load_list "$IPV6_ADDRESS_URL" "$IPV6_IPSET_NAME" "$MAX_ADDRESSES" "inet6"
 fi
+
+# Save our ipsets so that they can be loaded at boot, prior to iptables starting.
+# If they are not saved and restored at boot, iptables will be unable to reference
+# the set(s) and exit eith an error.
+echo "Backing up ipsets to /etc/ipset.conf..."
+ipset save > /etc/ipset.conf
